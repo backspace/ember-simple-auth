@@ -2,7 +2,6 @@
 import Ember from 'ember';
 import Base from 'ember-simple-auth/session-stores/base';
 import LocalStorage from 'ember-simple-auth/session-stores/local-storage';
-import Cookie from 'ember-simple-auth/session-stores/cookie';
 
 const { computed } = Ember;
 
@@ -85,9 +84,6 @@ export default Base.extend({
     if (this.get('_isLocalStorageAvailable')) {
       const options = { key: this.get('localStorageKey') };
       store = this._createStore(LocalStorage, options);
-    } else {
-      const options = this.getProperties('cookieDomain', 'cookieName', 'cookieExpirationTime');
-      store = this._createStore(Cookie, options);
     }
     this.set('_store', store);
   },
